@@ -89,3 +89,34 @@ public key -> cryptographic hash function -> address
 - 암호화폐가 도난 당했다는 것은 일부 개인키가 발견되어 새 계정으로 돈을 보내는 거래에 사용되었음을 의미한다. 블록체인 데이터는 변경할 수 없으므로, 개인키를 훔치고 자산을 이체한다면 해당 거래를 취소하는 것은 불가능하다.
 
 ### 원장
+
+- 트랜잭션의 모음이다.
+- 블록체인 네트워크는 설계에 따라 분산되어 각 피어 간에 동일한 원장 데이터를 업데이트하고 동기화하는 많은 복사본을 생성한다. 새로운 노드가 블록체인 네트워크에 합류할 때마다 다른 노드를 찾아 블록체인 네트워크 원장의 전체 사본을 요청하여 원장의 손실이나 파괴를 어렵게 한다.
+- 블록체인 네트워크는 SW, HW, 그리고 네트워크 인프라가 모두 다른 이기종 네트워크이다. 블록체인 네트워크 노드 사이에는 많은 차이점이 있기 때문에 하나의 노드에 대한 공격이 다른 노드에서도 작동한다는 보장이 없다.
+- 블록체인 네트워크는 전 세계에서 지리적으로 다양한 노드로 구성된다. P2P 방식으로 작동하는 블록체인 네트워크는 손실에 대해 탄력적이다.
+- 블록체인 네트워크는 모든 거래(트랜잭션)이 유효한지 확인해야 한다. 악의적인 노드가 트랜잭션을 전송하면 다른 사람들이 이를 감지하고 무시하여 잘못된 트랜잭션이 전파되는 것을 방지한다.
+- 블록체인 네트워크는 분산 원장 내에서 수락된 모든 트랜잭션을 보유한다. 새 블록을 구축하기 위해 이전 블록을 참조해야 하므로 게시 노드에 최신 블록에 대한 참조가 포함되어 있지 않으면, 다른 노드는 이를 거부한다.
+- 블록체인 네트워크는 디지털 서명 및 암호화 해시 가능을 사용하여 변조 방지를 제공한다.
+- 일반적으로 블록체인 네트워크의 정보는 공개적으로 볼 수 있으며, 훔칠 것이 없다. 블록체인 네트워크의 사용자를 공격하려면 개별적으로 대상을 지정해야 한다. 또한, 블록체인 자체를 공격에 대한 목표로 하는 것은 신뢰성 있는 노드의 저항에 부딪힌다.
+
+### 블록
+
+- 블록체인 네트워크의 사용자는 블록체인 네트워크에 후보 트랜잭션을 제출한다. 제출된 트랜잭션을 다른 노드로 전파하지만, 블록화 하지는 않는다. 게시 노드가 블록을 게시할 때 트랜잭션이 블록체인에 추가된다. 블록 헤더에는 이 블록에 대한 메타데이터가 포함된다.
+- 블록 데이터에는 블록체인 네트워크에 제출된 검증되고 인증된 트랜잭션 목록이 포함된다. 트랜잭션의 형식이 올바르고 각 트랜잭션의 디지털 자산 제공자가 각각 암호화된 트랜잭션에 서명하였는지 확인하여 유효성과 신뢰성을 보장한다. 이를 통해 거래에 대한 디지털 자산 제공자가 사용 가능한 디지털 자산에 서명할 수 있는 개인키를 보유하는 지 확인한다.
+- 다른 전체 노드는 게시된 블록에 있는 모든 트랜잭션의 유효성과 신뢰성을 확인하고, 유효하지 않은 트랜잭션이 포함된 블록은 수락하지 않는다.
+
+#### 블록의 구조
+
+##### 블록 헤더
+
+- The block number, also known as block height in some blockchain networks.
+- The previous block header’s hash value.
+- A hash representation of the block data (different methods can be used to accomplish this, such as a generating a Merkle tree, and storing the root hash, or by utilizing a hash of all the combined block data).
+- A timestamp.
+- The size of the block.
+- The nonce value. For blockchain networks which utilize mining, this is a number which is manipulated by the publishing node to solve the hash puzzle. Other blockchain networks may or may not include it or use it for another purpose other than solving a hash puzzle.
+
+##### 블록 데이터
+
+- A list of transactions and ledger events included within the block.
+- Other data may be present.
