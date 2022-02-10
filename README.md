@@ -25,4 +25,35 @@
 
 ### 암호화를 위한 해시 함수
 
+- 블록체인 네트워크에서 해시 함수(SHA-256 등)는 다양한 작업에 사용된다.
+
+#### 사용 예시
+
+- Address derivation.
+- Creating unique identifiers.
+- Securing the block data: a publishing node will hash the block data, creating a digest that will be stored within the block header.
+- Securing the block header: a publishing node will hash the block header. If the blockchain network utilizes a proof of work consensus model, the publishing node will need to hash the block header with different nonce values until the puzzle requirements have been fulfilled. The current block header’s hash digest will be included within the next block’s header, where it will secure the current block header data.
+
+### 암호화 nonce
+
+- nonce는 한번만 사용되는 임의의 숫자이다.
+- 데이터와 결합하여 nonce마다 다른 해시를 생성한다.
+
+```
+hash(data + nonce) = digest
+```
+
+- 즉, nonce 값만 변경하면 동일한 데이터에 대해 다른 다이제스트(digest) 값을 얻을 수 있으며, 이는 작업 증명 합의 모델에서 사용한다.
+
+### 거래
+
+- 블록체인 네트워크의 각 블록에는 0개 이상의 트랜잭션이 포함될 수 있다. 블록체인 네트워크의 보안을 유지하기 위해 새로운 블록의 지속적인 공급은 매우 중요하다. 이를 위해 트랜잭션이 발생하지 않더라도 지속해서 블록을 생성하여야 한다.
+- 새로운 블록을 지속적으로 공급함으로써 악의적인 사용자가 더 길고 위조된 블록체인을 제조하는 것을 방지한다.
+- 또한, 거래의 유효성과 신뢰성을 결정하는 것은 매우 중요하다. 트랜잭션의 유효성은 프로토콜 요구 사항 및 블록체인 네트워크의 구현과 관련된 모든 형식화된 데이터 형식, 또는 스마트 계약 요구 사항을 충족하는 지 확인한다. 거래의 진위 여부는 디지털 자산의 발신자가 해당 디지털 자산에 엑세스할 수 있는지 여부를 결정하므로, 매우 중요하다.
+- 트랜잭션은 일반적으로 발신자의 개인 키로 디지털 서명되며, 매칭되는 공개 키를 이용하여 언제든지 확인할 수 있다.
+
+![Feature 5](https://kihyeon-hong.github.io/Collection_of_repository_images/Blockchain_basic_study/figure1.JPG)
+
+### 비대칭키 암호화 (공개키 암호화)
+
 -
